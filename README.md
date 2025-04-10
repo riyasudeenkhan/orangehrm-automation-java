@@ -1,3 +1,9 @@
+![Java](https://img.shields.io/badge/Java-17-blue)
+![TestNG](https://img.shields.io/badge/TestNG-enabled-orange)
+![Maven](https://img.shields.io/badge/Build-Maven-success-brightgreen)
+![Allure](https://img.shields.io/badge/Reports-Allure-blue)
+![Last Commit](https://img.shields.io/github/last-commit/riyasudeenkhan/orangehrm-automation-java)
+
 # OrangeHRM Automation Framework -JAVA Stack
 
 This project contains automation scripts developed using:
