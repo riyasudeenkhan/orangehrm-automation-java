@@ -1,0 +1,30 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="OrangeHRM Suite">
+    <!-- <test name="OrangeHRM Tests">
+        <classes>
+            <class name="com.orangehrm.tests.LoginTest"/>
+            <class name="com.orangehrm.tests.LeaveTest"/>
+            <class name="com.orangehrm.tests.AdminTest"/>
+        </classes>
+    </test> -->
+    <!-- <test name="Leave Tests">
+        <classes>            
+            <class name="com.orangehrm.tests.LeaveTest">
+                <methods>
+                    <include name="testOpenLeavePage"/>
+                    <include name="testMoveToMyLeaveTab"/>
+                    <include name="testTableData"/>
+                </methods>
+            </class>
+        </classes>
+    </test> -->
+    <test name="Admin Tests">
+        <classes>            
+            <class name="com.orangehrm.tests.AdminTest">
+                <methods>
+                    <include name="testDeleteUser"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
