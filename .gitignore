@@ -36,3 +36,6 @@ out/
 .project
 .classpath
 .settings/
+
+# Allure result folder
+allure-results/
