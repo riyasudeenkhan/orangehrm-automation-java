@@ -32,4 +32,13 @@ public class WaitHelper {
         waitForElementVisible(element, timeoutInSeconds);
         return getElement(element).getText();
     }
+
+    public void customHardWait(int millis) {
+        // Wait for suggestion to appear
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

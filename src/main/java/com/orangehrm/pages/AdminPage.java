@@ -106,24 +106,21 @@ public class AdminPage {
 
         Actions actions = new Actions(driver);
         // Wait for suggestion to appear
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitHelper.customHardWait(3000);
         actions.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).build().perform();
     }
 
-    public void addUser(String userNameInput) {
+    public void addUser(String user) {
         waitHelper.waitForElementVisible(addButton, 10);
         driver.findElement(addButton).click();
         waitHelper.waitForElementVisible(userName, 20);
         selectUserRoleFilter("Admin");
         enterEmployeeName("Orange", "Orange Test");
         selectStatusFilter("Enabled");
-        driver.findElement(userName).sendKeys(userNameInput);
+        driver.findElement(userName).sendKeys(user);
         driver.findElement(password).sendKeys("maven123");
         driver.findElement(confirmPassword).sendKeys("maven123");
+        waitHelper.customHardWait(1000);
         driver.findElement(submit).click();
     }
 
