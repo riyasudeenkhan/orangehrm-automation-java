@@ -28,15 +28,12 @@ public class BaseTest {
     public void setUp() {
         WebDriverManager.chromedriver().setup();
 
-        // ChromeOptions options = new ChromeOptions();
-        // options.addArguments("--headless=new"); // Or "--headless" for older Chrome
-        // options.addArguments("--no-sandbox");
-        // options.addArguments("--disable-dev-shm-usage");
-        // options.addArguments("--disable-gpu"); // Not needed for headless, but safe
-        // options.addArguments("--user-data-dir=/tmp/chrome-user-data"); // <- This is key
-        // options.addArguments("--remote-allow-origins=*");
-        // System.out.println("Chrome options: " + options.asMap());
-        driver = new ChromeDriver();        
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--headless");        
+        System.out.println("Chrome options: " + options.asMap());
+        driver = new ChromeDriver(options);        
         driver.manage().window().maximize();
         driver.get(ConfigReader.get("baseUrl"));
 
