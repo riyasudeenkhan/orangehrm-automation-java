@@ -7,6 +7,8 @@ import com.orangehrm.pages.HomePage;
 import com.orangehrm.pages.LeavePage;
 import com.orangehrm.pages.LoginPage;
 
+import java.io.File;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -14,6 +16,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import java.nio.file.Files;
 
 public class BaseTest {
 
@@ -25,15 +28,21 @@ public class BaseTest {
     protected WaitHelper waitHelper;
 
     @BeforeClass
-    public void setUp() {
+    public void setUp() throws Exception {
         WebDriverManager.chromedriver().setup();
+        // Generate a truly unique temp directory for user-data-dir
+        File tempUserDataDir = Files.createTempDirectory("chrome-user-data").toFile();
 
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--headless");        
+        options.addArguments("--disable-gpu");
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--user-data-dir=" + tempUserDataDir.getAbsolutePath()); // ✅ dynamic dir
+
         System.out.println("Chrome options: " + options.asMap());
-        driver = new ChromeDriver(options);        
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.get(ConfigReader.get("baseUrl"));
 
@@ -45,7 +54,7 @@ public class BaseTest {
         waitHelper = new WaitHelper(driver);
 
         // Login once before running all test methods
-        loginPage.login(ConfigReader.get("username"), ConfigReader.get("password"));        
+        loginPage.login(ConfigReader.get("username"), ConfigReader.get("password"));
     }
 
     @AfterClass
