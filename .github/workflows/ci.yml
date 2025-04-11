@@ -25,6 +25,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@v1            
+
       - name: Run tests with Maven using testng.xml
         run: mvn clean test -DsuiteXmlFile=testng.xml
 
