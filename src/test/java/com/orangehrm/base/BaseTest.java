@@ -28,15 +28,15 @@ public class BaseTest {
     public void setUp() {
         WebDriverManager.chromedriver().setup();
 
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new"); // Or "--headless" for older Chrome
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--disable-gpu"); // Not needed for headless, but safe
-        options.addArguments("--user-data-dir=/tmp/chrome-user-data"); // <- This is key
-        options.addArguments("--remote-allow-origins=*");
-
-        driver = new ChromeDriver(options);
+        // ChromeOptions options = new ChromeOptions();
+        // options.addArguments("--headless=new"); // Or "--headless" for older Chrome
+        // options.addArguments("--no-sandbox");
+        // options.addArguments("--disable-dev-shm-usage");
+        // options.addArguments("--disable-gpu"); // Not needed for headless, but safe
+        // options.addArguments("--user-data-dir=/tmp/chrome-user-data"); // <- This is key
+        // options.addArguments("--remote-allow-origins=*");
+        // System.out.println("Chrome options: " + options.asMap());
+        driver = new ChromeDriver();        
         driver.manage().window().maximize();
         driver.get(ConfigReader.get("baseUrl"));
 
@@ -48,9 +48,7 @@ public class BaseTest {
         waitHelper = new WaitHelper(driver);
 
         // Login once before running all test methods
-        loginPage.login(ConfigReader.get("username"), ConfigReader.get("password"));
-
-        System.out.println("Chrome options: " + options.asMap());
+        loginPage.login(ConfigReader.get("username"), ConfigReader.get("password"));        
     }
 
     @AfterClass
