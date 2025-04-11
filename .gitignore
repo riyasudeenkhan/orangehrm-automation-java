@@ -1,41 +1,25 @@
-# Compiled class files
-*.class
+# Maven build directory
+/target/
 
-# Logs
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-
-# Maven
-target/
-
-# VSCode settings
+# IDE configs
+*.iml
+.idea/
 .vscode/
 
-# Mac system files
-.DS_Store
+# Java compiled classes
+*.class
 
-# Windows system files
+# OS-specific files
+.DS_Store
 Thumbs.db
 
-# IntelliJ IDEA
-.idea/
-*.iml
-out/
+# Runtime artifacts
+screenshots/
+logs/
 
-# Eclipse
-.project
-.classpath
-.settings/
-
-# Allure result folder
+# Allure generated files
 allure-results/
+allure-report/
+
+# Chrome profile/cache (if created manually)
+chrome-user-data/

@@ -1,6 +1,7 @@
 package com.orangehrm.tests;
 
 import com.orangehrm.pages.LoginPage;
+import com.orangehrm.listeners.RetryAnalyzer;
 import com.orangehrm.pages.HomePage;
 import com.orangehrm.utils.ConfigReader;
 
@@ -10,9 +11,7 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import io.qameta.allure.testng.AllureTestNg;
 
-@Listeners({AllureTestNg.class})
 public class LoginTest {
 
     private WebDriver driver;
@@ -33,7 +32,7 @@ public class LoginTest {
     @Test
     public void testLoginSuccess() {
         loginPage.login(ConfigReader.get("username"), ConfigReader.get("password"));
-        Assert.assertTrue(homePage.isUserLoggedIn()); 
+        Assert.assertTrue(homePage.isUserLoggedIn());
     }
 
     @Test
@@ -41,6 +40,13 @@ public class LoginTest {
         loginPage.login(ConfigReader.get("username"), ConfigReader.get("password"));
         homePage.logout();
         Assert.assertTrue(loginPage.isLoginPageDisplayed());
+    }
+
+    @Test(retryAnalyzer = RetryAnalyzer.class)
+    public void testLoginFailure() {
+        //flaky test
+        loginPage.login("test", "test123");
+        Assert.assertTrue(homePage.isUserLoggedIn());
     }
 
     @AfterMethod

@@ -5,12 +5,8 @@ import java.util.List;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import io.qameta.allure.testng.AllureTestNg;
-
-@Listeners({ AllureTestNg.class })
 public class LeaveTest extends BaseTest {
 
     @BeforeMethod
