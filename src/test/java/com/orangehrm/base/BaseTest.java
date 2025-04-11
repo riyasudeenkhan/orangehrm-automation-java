@@ -29,14 +29,12 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new"); // or "--headless" for older versions
+        options.addArguments("--headless=new"); // Or "--headless" for older Chrome
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--remote-allow-origins=*"); // Optional, but often needed
-
-        // This avoids using a shared or locked profile
-        options.addArguments("--disable-gpu");
-        options.addArguments("--user-data-dir=/tmp/chrome-user-data");
+        options.addArguments("--disable-gpu"); // Not needed for headless, but safe
+        options.addArguments("--user-data-dir=/tmp/chrome-user-data"); // <- This is key
+        options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
@@ -51,6 +49,8 @@ public class BaseTest {
 
         // Login once before running all test methods
         loginPage.login(ConfigReader.get("username"), ConfigReader.get("password"));
+
+        System.out.println("Chrome options: " + options.asMap());
     }
 
     @AfterClass
