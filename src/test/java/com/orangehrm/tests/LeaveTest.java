@@ -1,13 +1,19 @@
 package com.orangehrm.tests;
 
 import com.orangehrm.base.BaseTest;
+import com.orangehrm.utils.Log;
+
+import io.qameta.allure.Allure;
+
 import java.util.List;
 
+import org.slf4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class LeaveTest extends BaseTest {
+    private static final Logger logger = Log.getLogger(LeaveTest.class);
 
     @BeforeMethod
     public void navigateToLeave() {
@@ -16,8 +22,11 @@ public class LeaveTest extends BaseTest {
 
     @Test
     public void testLeavePageLoads() {
+        logger.info("🟡 This should appear in Allure via logger");
+        Allure.step("🟢 Direct Allure step for verification");
         leavePage.gotoLeavePage();
         String actualTitle = leavePage.getPageTitle();
+        logger.info("Actual Title = {}", actualTitle);
         Assert.assertEquals(actualTitle, "Leave", "Leave page title mismatch!");
     }
 

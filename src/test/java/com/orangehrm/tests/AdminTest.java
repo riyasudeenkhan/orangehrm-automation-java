@@ -2,14 +2,17 @@ package com.orangehrm.tests;
 
 import java.util.List;
 
+import org.slf4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.orangehrm.base.BaseTest;
+import com.orangehrm.utils.Log;
 
 public class AdminTest extends BaseTest {
+    private static final Logger logger = Log.getLogger(AdminTest.class);
 
     @DataProvider(name = "filters")
     public Object[][] filters() {
@@ -52,16 +55,16 @@ public class AdminTest extends BaseTest {
     public void testDeleteUser() {
         String username = "testingMavens123"; // Use a real/existing user
         if (!adminPage.isUserExist(username)) {
-            System.out.println("User doesn't exist. Creating: " + username);
+            logger.info("User doesn't exist. Creating: " + username);
             adminPage.addUser(username);
-            System.out.println("User is created successfully");
+            logger.info("User is created successfully");
         } else {
-            System.out.println("User already exists: " + username);
+            logger.info("User already exists: " + username);
         }
         adminPage.deleteUserByUsername(username);
         adminPage.searchUser(username);
         List<String> searchData = adminPage.getTableData();
-        System.out.println("Search result data: " + searchData);
+        logger.info("Search result data: " + searchData);
         Assert.assertTrue(searchData.isEmpty(), "Searched data should be empty for: " + username);
     }
 

@@ -4,6 +4,7 @@ import com.orangehrm.pages.LoginPage;
 import com.orangehrm.listeners.RetryAnalyzer;
 import com.orangehrm.pages.HomePage;
 import com.orangehrm.utils.ConfigReader;
+import com.orangehrm.utils.Log;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,13 +12,15 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.slf4j.Logger;
 
 public class LoginTest {
+    private static final Logger logger = Log.getLogger(LoginTest.class);
 
     private WebDriver driver;
     private LoginPage loginPage;
     private HomePage homePage;
-
+    
     @BeforeMethod
     public void setUp() {
         WebDriverManager.chromedriver().setup();
@@ -31,7 +34,10 @@ public class LoginTest {
 
     @Test
     public void testLoginSuccess() {
-        loginPage.login(ConfigReader.get("username"), ConfigReader.get("password"));
+        String user = ConfigReader.get("username");
+        String password = ConfigReader.get("password");
+        logger.info("Logging in with user: {}", user);
+        loginPage.login(user, password);
         Assert.assertTrue(homePage.isUserLoggedIn());
     }
 

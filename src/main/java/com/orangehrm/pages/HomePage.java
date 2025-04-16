@@ -2,10 +2,13 @@ package com.orangehrm.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
 
+import com.orangehrm.utils.Log;
 import com.orangehrm.utils.WaitHelper;
 
 public class HomePage {
+    private static final Logger logger = Log.getLogger(AdminPage.class);
     WebDriver driver;
     private WaitHelper waitObj;
 

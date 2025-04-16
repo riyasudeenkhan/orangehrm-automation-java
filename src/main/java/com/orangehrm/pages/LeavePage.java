@@ -8,8 +8,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.orangehrm.utils.WaitHelper;
+import org.slf4j.Logger;
+import com.orangehrm.utils.Log;
 
 public class LeavePage {
+    private static final Logger logger = Log.getLogger(LeavePage.class);
+
     private WebDriver driver;
     private WaitHelper waitObj;
 
@@ -31,7 +35,9 @@ public class LeavePage {
 
     public String getPageTitle() {
         waitObj.waitForElementVisible(pageTitle, 30);
-        return driver.findElement(pageTitle).getText();
+        String title = driver.findElement(pageTitle).getText();
+        logger.debug("Fetched page title: {}", title);
+        return title;
     }
 
     public void selectLeaveTab(String tabName) {

@@ -10,10 +10,14 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.slf4j.Logger;
 
+import com.orangehrm.utils.Log;
 import com.orangehrm.utils.WaitHelper;
 
 public class AdminPage {
+    private static final Logger logger = Log.getLogger(AdminPage.class);
+
     private WebDriver driver;
     private WaitHelper waitHelper;
 
@@ -88,9 +92,9 @@ public class AdminPage {
                 return data;
 
             } catch (StaleElementReferenceException e) {
-                System.out.println("Retrying due to stale element...");
+                logger.info("Retrying due to stale element...");
             } catch (Exception e) {
-                System.out.println("Exception while fetching table data: " + e.getMessage());
+                logger.info("Exception while fetching table data: " + e.getMessage());
             }
         }
 
@@ -131,7 +135,7 @@ public class AdminPage {
 
         List<WebElement> rows = driver.findElements(By.cssSelector(".oxd-table-body .oxd-table-row"));
         if (rows.isEmpty()) {
-            System.out.println("No user found to delete.");
+            logger.info("No user found to delete.");
             return;
         }
 
@@ -139,7 +143,7 @@ public class AdminPage {
         for (WebElement row : rows) {
             String rowText = row.getText();
             if (rowText.contains(username)) {
-                System.out.println("Found matching user row: " + rowText);
+                logger.info("Found matching user row: " + rowText);
                 userFound = true;
 
                 // ✅ 2. Find and click the checkbox within this row
@@ -156,13 +160,13 @@ public class AdminPage {
                 waitHelper.waitForElementVisible(confirmDelete, 10);
                 driver.findElement(confirmDelete).click();
 
-                System.out.println("Deleted user: " + username);
+                logger.info("Deleted user: " + username);
                 break;
             }
         }
 
         if (!userFound) {
-            System.out.println("User row with matching username not found.");
+            logger.info("User row with matching username not found.");
         }
     }
 

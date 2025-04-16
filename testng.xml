@@ -17,9 +17,9 @@
         <classes>            
             <class name="com.orangehrm.tests.LeaveTest">
                 <methods>
-                    <include name="testOpenLeavePage"/>
-                    <include name="testMoveToMyLeaveTab"/>
-                    <include name="testTableData"/>
+                    <include name="testLeavePageLoads"/>
+                    <include name="testMyLeaveTabDisplaysData"/>
+                    <include name="testLeaveTypeFilter"/>
                 </methods>
             </class>
         </classes>
