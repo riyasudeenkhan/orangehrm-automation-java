@@ -7,7 +7,18 @@
 
     <appender name="ALLURE" class="com.orangehrm.utils.AllureLogAppender" />
 
-    <root level="info">
+    <!-- Suppress spammy DEBUG logs -->
+    <logger name="org.apache.http" level="INFO" />
+    <logger name="org.apache.http.wire" level="INFO" />
+    <logger name="org.apache.http.impl.conn" level="INFO" />
+    <logger name="org.apache.http.client" level="INFO" />
+    <logger name="io.restassured" level="INFO" />
+
+
+    <!-- Your application logs -->
+    <logger name="com.orangehrm" level="INFO" />
+
+    <root level="INFO">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="ALLURE" />
     </root>

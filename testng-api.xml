@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="API Suite">
+    <listeners>
+        <listener class-name="com.orangehrm.listeners.TestListener"/>
+        <listener class-name="com.orangehrm.listeners.RetryTransformer"/>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+
+    <test name="API Tests">
+        <classes>
+            <class name="com.orangehrm.tests.api.GetUsersTest"/>
+            <class name="com.orangehrm.tests.api.GetPostByIdTest"/>
+            <class name="com.orangehrm.tests.api.CreatePostTest"/>
+            <class name="com.orangehrm.tests.api.UpdatePostTest"/>
+            <class name="com.orangehrm.tests.api.DeletePostTest"/>
+        </classes>
+    </test>    
+</suite>
