@@ -10,7 +10,7 @@ import static org.testng.Assert.*;
 
 import org.slf4j.Logger;
 import java.util.logging.LogManager;
-import org.slf4j.bridge.SLF4JBridgeHandler;
+//import org.slf4j.bridge.SLF4JBridgeHandler;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -18,12 +18,12 @@ import static org.hamcrest.Matchers.*;
 public class GetUsersTest {
     private static final Logger logger = Log.getLogger(GetUsersTest.class);
 
-    static {
-        // Redirect JUL (java.util.logging) to SLF4J
-        LogManager.getLogManager().reset();
-        SLF4JBridgeHandler.removeHandlersForRootLogger();
-        SLF4JBridgeHandler.install();
-    }
+    // static {
+    //     // Redirect JUL (java.util.logging) to SLF4J
+    //     LogManager.getLogManager().reset();
+    //     SLF4JBridgeHandler.removeHandlersForRootLogger();
+    //     SLF4JBridgeHandler.install();
+    // }
 
     @Test
     public void testGetAllUsers() {

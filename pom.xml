@@ -25,14 +25,14 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>4.20.0</version>
+      <version>4.31.0</version>
     </dependency>
 
     <!-- TestNG -->
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
-      <version>7.10.1</version>
+      <version>7.11.0</version>
       <scope>test</scope>
     </dependency>
 
@@ -40,14 +40,14 @@
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
-      <version>5.8.0</version>
+      <version>6.0.1</version>
     </dependency>
 
     <!-- Allure Report -->
     <dependency>
       <groupId>io.qameta.allure</groupId>
       <artifactId>allure-testng</artifactId>
-      <version>2.25.0</version>
+      <version>2.29.1</version>
     </dependency>
 
     <!-- SLF4J API -->
@@ -58,19 +58,19 @@
     </dependency>
 
     <!-- Logback (slf4j implementation that shows logs in console) -->
-    <dependency> 
+    <!-- <dependency> 
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>
         <version>1.5.16</version>
         <scope>compile</scope>
-    </dependency>
+    </dependency> -->
 
     <!-- https://mvnrepository.com/artifact/org.slf4j/jul-to-slf4j -->
-    <dependency>
+    <!-- <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>jul-to-slf4j</artifactId>
         <version>2.0.17</version>
-    </dependency>
+    </dependency> -->
 
     <!-- Rest Assured -->
     <dependency>
@@ -93,6 +93,25 @@
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-databind</artifactId>
         <version>2.17.0</version>
+    </dependency>
+
+    <!-- Cucumber -->
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>7.22.0</version>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-testng</artifactId>
+      <version>7.22.0</version>
+    </dependency>
+
+    <!-- Cucumber Reporting -->
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-cucumber7-jvm</artifactId>
+      <version>2.29.1</version>
     </dependency>
 
   </dependencies>
@@ -152,11 +171,16 @@
             <useSystemOut>true</useSystemOut>
             <systemPropertyVariables>
               <allure.results.directory>target/allure-results</allure.results.directory>
-              <java.util.logging.config.file>${project.basedir}/src/test/resources/logging.properties</java.util.logging.config.file>
+              <!-- <org.slf4j.simpleLogger.log.org.apache.http>OFF</org.slf4j.simpleLogger.log.org.apache.http>
+              <org.slf4j.simpleLogger.log.org.apache.http.wire>OFF</org.slf4j.simpleLogger.log.org.apache.http.wire>
+              <org.slf4j.simpleLogger.defaultLogLevel>ERROR</org.slf4j.simpleLogger.defaultLogLevel> -->
             </systemPropertyVariables>
             <argLine>
               -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
             </argLine>
+            <includes>
+              <include>**/CucumberTestRunner.java</include>
+            </includes>
           </configuration>
           <dependencies>
             <dependency>

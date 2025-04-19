@@ -12,6 +12,7 @@ public class LoginPage {
     private By usernameField = By.name("username");
     private By passwordField = By.name("password");
     private By loginButton = By.cssSelector("button[type='submit']");
+    private By invalidCred = By.xpath("//p[text()='Invalid credentials']");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -32,5 +33,10 @@ public class LoginPage {
     public Boolean isLoginPageDisplayed() {
         waitObj.waitForElementVisible(loginButton, 60);
         return driver.findElement(loginButton).isDisplayed();
+    }
+
+    public Boolean isInvalidCredentials() {
+        waitObj.waitForElementVisible(invalidCred, 10);
+        return driver.findElement(invalidCred).isDisplayed();
     }
 }

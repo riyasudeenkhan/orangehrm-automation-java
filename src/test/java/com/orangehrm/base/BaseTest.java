@@ -27,7 +27,7 @@ public class BaseTest {
 
     @BeforeClass
     public void setUp() throws Exception {
-        WebDriverManager.chromedriver().setup();        
+        WebDriverManager.chromedriver().setup();
 
         boolean isHeadless = Boolean.parseBoolean(System.getProperty("headless", "false"));
         ChromeOptions options = new ChromeOptions();
@@ -63,5 +63,5 @@ public class BaseTest {
         homePage.logout();
         getDriver().quit();
         driver.remove(); // Clean up thread-local memory
-    }    
+    }
 }
