@@ -15,7 +15,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/riyasudeenkhan/orangehrm-automation-java.git'
+                git branch: 'main', url: 'https://github.com/riyasudeenkhan/orangehrm-automation-java.git'
             }
         }
 
