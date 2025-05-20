@@ -2,11 +2,17 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven-4.0'   // Adjust as per your Jenkins Maven installation name
+        maven 'Maven-3.6.0'   // Adjust as per your Jenkins Maven installation name
         jdk 'JDK-17.0'          // Adjust as per your Jenkins JDK installation name
     }
 
     stages {
+        stage('Debug') {
+            steps {
+                echo 'Pipeline started'
+            }
+        }
+
         stage('Checkout') {
             steps {
                 git 'https://github.com/riyasudeenkhan/orangehrm-automation-java.git'
