@@ -6,19 +6,23 @@ pipeline {
     //     jdk 'JDK-17.0'          // Adjust as per your Jenkins JDK installation name
     // }
     parameters {
-        string(name: 'TESTNG_FILE', defaultValue: 'testng.xml', description: 'Name of the TestNG suite XML file')
+        choice(
+            name: 'TESTNG_FILE',
+            choices: ['testng.xml', 'testng-api.xml', 'testng-parallel.xml'],
+            description: 'Select TestNG suite file'
+        )
     }
 
     stages {
-        stage('Debug') {
-            steps {
-                echo 'Pipeline started'
-            }
-        }
-
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/riyasudeenkhan/orangehrm-automation-java.git'
+            }
+        }
+
+        stage('Echo Param') {
+            steps {
+                echo "Suite selected: ${params.TESTNG_FILE}"
             }
         }
 
