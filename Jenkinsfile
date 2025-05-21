@@ -38,17 +38,13 @@ pipeline {
                     bat "mvn test -DsuiteXmlFile=%TESTNG_FILE%"
                 }
             }
-        }
-
-        stage('Publish Reports') {
-            steps {
-                junit '**/target/surefire-reports/*.xml'
-            }
-        }
+        }        
     }
 
     post {
         always {
+            junit '**/target/surefire-reports/*.xml'
+            allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
             echo "Pipeline completed."
         }
         success {
