@@ -34,7 +34,9 @@ pipeline {
 
         stage('Test') {
             steps {
-                bat 'mvn test -DsuiteXmlFile=${params.TESTNG_FILE}'
+                withEnv(["TESTNG_FILE=${params.TESTNG_FILE}"]) {
+                    bat "mvn test -DsuiteXmlFile=%TESTNG_FILE%"
+                }
             }
         }
 
