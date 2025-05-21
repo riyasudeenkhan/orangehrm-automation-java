@@ -5,6 +5,9 @@ pipeline {
     //     maven 'Maven-3.6.0'   // Adjust as per your Jenkins Maven installation name
     //     jdk 'JDK-17.0'          // Adjust as per your Jenkins JDK installation name
     // }
+    parameters {
+        string(name: 'TESTNG_FILE', defaultValue: 'testng.xml', description: 'Name of the TestNG suite XML file')
+    }
 
     stages {
         stage('Debug') {
@@ -27,7 +30,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                bat 'mvn test -Dsurefire.suiteXmlFiles=testng-api.xml'
+                bat 'mvn test -DsuiteXmlFile=${params.TESTNG_FILE}'
             }
         }
 
