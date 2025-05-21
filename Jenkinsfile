@@ -34,7 +34,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                bat 'mvn test -Dsurefire.suiteXmlFiles=${params.TESTNG_FILE}'
+                bat 'mvn test -DsuiteXmlFile=${params.TESTNG_FILE}'
             }
         }
 
