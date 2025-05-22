@@ -1,10 +1,6 @@
 pipeline {
     agent any
-
-    // tools {
-    //     maven 'Maven-3.6.0'   // Adjust as per your Jenkins Maven installation name
-    //     jdk 'JDK-17.0'          // Adjust as per your Jenkins JDK installation name
-    // }
+    
     parameters {
         choice(
             name: 'TESTNG_FILE',
